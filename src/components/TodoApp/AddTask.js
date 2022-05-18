@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const AddTask = () => {
-
+    const [tasks, setTasks] = useState([]);
         const handleSubmit = (e) => {
             e.preventDefault();
             const name = e.target.name.value;
             const description = e.target.description.value;
             const details = {name, description}
-            console.log(details);
+            fetch('http://localhost:5000/tasks', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(details)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged === true) {
+                    console.log(data);
+                    setTasks(data);
+                }
+            })
         }
-
 
     return (
         <div>
