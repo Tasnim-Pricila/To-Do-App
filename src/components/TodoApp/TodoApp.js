@@ -1,10 +1,13 @@
 import React from 'react';
+import AddTask from './AddTask';
+import ShowTask from './ShowTask';
 
 const TodoApp = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <AddTask></AddTask>
+            <ShowTask></ShowTask>
+        </>
     );
 };
 

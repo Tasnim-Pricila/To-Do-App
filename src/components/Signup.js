@@ -42,8 +42,6 @@ const Signup = () => {
                 <div className='md:w-1/4 px-4 py-16'>
                     <div className='text-center'>
                         <p className='text-4xl uppercase text-orange-40'>Sign Up</p>
-                        <p className='mt-4 mb-12 text-slate-500'>Create new account today to reap the benefits of a personalized
-                            shopping experience</p>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)} className=' mx-auto'>
                         {/* Name Field  */}
