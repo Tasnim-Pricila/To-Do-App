@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
 import SocialLogin from '../Shared/SocialLogin';
 
 const Signup = () => {
+    const navigate = useNavigate();
     // Create User 
     const [createUserWithEmailAndPassword, emailUser, emailLoading, emailError] = useCreateUserWithEmailAndPassword(auth);
 
@@ -32,6 +33,10 @@ const Signup = () => {
             setMyError('Password Does not match')
         }
     }
+    if(emailUser){
+        navigate('/');
+    }
+    
     if (emailLoading || sending || updating) {
         return <p>Loading...</p>
     }
@@ -41,14 +46,13 @@ const Signup = () => {
             >
                 <div className='md:w-1/4 px-4 py-16'>
                     <div className='text-center'>
-                        <p className='text-4xl uppercase text-orange-40'>Sign Up</p>
+                        <p className='text-4xl uppercase text-orange-40 font-semibold'>Sign Up</p>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)} className=' mx-auto'>
                         {/* Name Field  */}
                         <div >
                             <input placeholder='Name' type='text' {...register("name", { required: true, })}
-                                className='bg-[#dddddd38] block border-gray-300 w-full pl-10 py-2  
-                            rounded-full outline-none'/>
+                                className='input input-bordered input-secondary w-full max-w-xs my-4'/>
 
                         </div>
                         <small className='text-red-500 '>
@@ -57,8 +61,7 @@ const Signup = () => {
                         {/* Email Field  */}
                         <div >
                             <input placeholder='Email'  {...register("email", { required: true, pattern: /\S+@\S+\.\S+/ })}
-                                className='bg-[#dddddd38] block border-gray-300 w-full pl-10 py-2  
-                            rounded-full outline-none mt-6'/>
+                               className='input input-bordered input-secondary w-full max-w-xs my-4'/>
 
                         </div>
 
@@ -71,7 +74,7 @@ const Signup = () => {
                         {/* PAssword field  */}
                         <div >
                             <input placeholder='Password' type='password' {...register("password", { required: true, pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/, minLength: 8 })}
-                                className='bg-[#dddddd38] block border-gray-300 w-full pl-10 py-2 rounded-full outline-none mt-6' />
+                                className='input input-bordered input-secondary w-full max-w-xs my-4' />
 
                         </div>
                         <small className=' text-red-500'>
@@ -84,8 +87,7 @@ const Signup = () => {
                         {/* Confirm PAssword field  */}
                         <div>
                             <input placeholder='Confirm Password' type='password' {...register("cpassword", { required: true, })}
-                                className='bg-[#dddddd38] block border-gray-300 w-full pl-10 py-2 
-                            rounded-full outline-none mt-6'/>
+                                className='input input-bordered input-secondary w-full max-w-xs my-4'/>
 
                         </div>
                         <small className=' text-red-500'>
@@ -94,12 +96,11 @@ const Signup = () => {
                         </small>
 
                         {/* Submit Button  */}
-                        <input type="submit" className='block border-gray-300 w-full mb-4 pl-4 py-2 cursor-pointer bg-orange-400 font-semibold tracking-wider
-                        rounded-full outline-none mt-6' />
+                        <input type="submit" className='btn btn-active btn-secondary w-full mt-6' />
                     </form>
 
-                    <div className='text-center mt-6 tracking-wider'>
-                        <p>Already Have an Account? <Link to='/login' className='text-orange-500 hover:underline'> Login </Link></p>
+                    <div className='text-center mt-6 tracking-wider font-semibold'>
+                        <p>Already Have an Account? <Link to='/login' className='text-primary hover:underline '> Login </Link></p>
                     </div>
                     <SocialLogin></SocialLogin>
 

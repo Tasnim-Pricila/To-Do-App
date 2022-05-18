@@ -1,17 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 
 const ShowTask = () => {
-    const [tasks, setTasks] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/tasks')
-            .then(res => res.json())
-            .then(data => setTasks(data))
-    }, [setTasks])
    
+    const {data : tasks, isLoading, refetch} = useQuery( 'tasks',() => 
+    fetch(`http://localhost:5000/tasks`)
+            .then(res => res.json())
+    )
+
+    if(isLoading){
+        return <p>Loading...</p>
+    }
+
+    const handleDelete = (id) => {
+        fetch(`http://localhost:5000/tasks/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast.success('Item Deleted Successfully', {
+                        theme: 'colored',
+                        delay: 0,
+                    });
+                    // const remainingTasks= tasks.filter(task => task._id !== id);
+                    // setTasks(remainingTasks);
+                    refetch();
+                }
+            })
+    }
+
+    const handleComplete = (e) => {
+        
+
+
+    }
     return (
         <div>
             <div className="overflow-x-auto px-12 mx-auto">
-                <table className="table table-zebra w-full">
+                <table className="table table-zebra w-full text-center">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -24,12 +52,12 @@ const ShowTask = () => {
                     <tbody>
                         {
                             tasks.map((task, index) =>
-                                <tr key={index}>
+                                <tr key={task._id} >
                                     <th>{index+1}</th>
                                     <td>{task.name}</td>
                                     <td>{task.description}</td>
-                                    <td><button class="btn btn-outline btn-accent">Complete</button></td>
-                                    <td><button className="btn btn-outline btn-error">Delete</button></td>
+                                    <td><button className="btn btn-outline btn-accent" onClick={handleComplete}>Complete</button></td>
+                                    <td><button onClick={() => handleDelete(task._id)} className="btn btn-outline btn-error">Delete</button></td>
                                 </tr>
                             )
                         }

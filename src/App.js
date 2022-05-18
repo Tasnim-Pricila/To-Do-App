@@ -6,6 +6,7 @@ import Header from './Shared/Header';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import TodoApp from './components/TodoApp/TodoApp';
+import RequireAuth from './components/RequireAuth/RequireAuth';
 
 function App() {
 
@@ -14,7 +15,11 @@ function App() {
       <Header></Header>
       
       <Routes>
-          <Route path='/' element={<TodoApp></TodoApp>}></Route>
+          <Route path='/' element={
+          <RequireAuth>
+              <TodoApp></TodoApp>
+          </RequireAuth>
+          }></Route>
           <Route path='/login' element={<Login></Login>}></Route>
           <Route path='/register' element={<Signup></Signup>}></Route>
       </Routes>
