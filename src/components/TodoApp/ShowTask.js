@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 const ShowTask = () => {
    
     const {data : tasks, isLoading, refetch} = useQuery( 'tasks',() => 
-    fetch(`http://localhost:5000/tasks`)
+    fetch(`https://infinite-cliffs-36577.herokuapp.com/tasks`)
             .then(res => res.json())
     )
 
@@ -14,7 +14,7 @@ const ShowTask = () => {
     }
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/tasks/${id}`, {
+        fetch(`https://infinite-cliffs-36577.herokuapp.com/tasks/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -24,17 +24,18 @@ const ShowTask = () => {
                         theme: 'colored',
                         delay: 0,
                     });
-                    // const remainingTasks= tasks.filter(task => task._id !== id);
-                    // setTasks(remainingTasks);
                     refetch();
                 }
             })
     }
 
-    const handleComplete = (e) => {
+    const handleComplete = (e) => {      
         
-
-
+        e.target.style.textDecoration = "line-through";
+        toast.success('Task Completed Successfully', {
+            theme: 'colored',
+            delay: 0,
+        });
     }
     return (
         <div>
@@ -54,7 +55,7 @@ const ShowTask = () => {
                             tasks.map((task, index) =>
                                 <tr key={task._id} >
                                     <th>{index+1}</th>
-                                    <td>{task.name}</td>
+                                    <td id='name'>{task.name}</td>
                                     <td>{task.description}</td>
                                     <td><button className="btn btn-outline btn-accent" onClick={handleComplete}>Complete</button></td>
                                     <td><button onClick={() => handleDelete(task._id)} className="btn btn-outline btn-error">Delete</button></td>

@@ -23,7 +23,7 @@ const Header = () => {
 
                     <div className="navbar-end">
                         {user ?
-                            <button className='uppercase border border-orange-400 rounded px-4 py-1 '
+                            <button className='uppercase btn btn-outline btn-primary '
                                 onClick={handleSignOut}>
                                 Logout
                                 <FontAwesomeIcon icon={faSignOut} className='pl-2'></FontAwesomeIcon>
@@ -31,7 +31,7 @@ const Header = () => {
                             :
                             <div>
                                 <Link to='/register' className="btn mr-2">REGiSTER</Link>
-                                <Link to='/login' className="btn">Login</Link>
+                                <Link to='/login' className="btn ">Login</Link>
                             </div>
                         }
                     </div>

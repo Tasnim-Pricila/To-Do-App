@@ -4,10 +4,10 @@ import { toast } from 'react-toastify';
 
 const AddTask = () => {
 
-    const url = 'http://localhost:5000/tasks';
+    const url = 'https://infinite-cliffs-36577.herokuapp.com/tasks';
 
     const { isLoading, refetch } = useQuery( 'tasks',() => 
-    fetch(`http://localhost:5000/tasks`)
+    fetch(`https://infinite-cliffs-36577.herokuapp.com/tasks`)
             .then(res => res.json())
     )
     if(isLoading){

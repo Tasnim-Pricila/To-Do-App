@@ -33,13 +33,13 @@ const Signup = () => {
             setMyError('Password Does not match')
         }
     }
+    if (emailLoading || sending || updating) {
+        return <p>Loading...</p>
+    }
     if(emailUser){
         navigate('/');
     }
     
-    if (emailLoading || sending || updating) {
-        return <p>Loading...</p>
-    }
     return (
         <div>
             <div className='flex items-center justify-center'

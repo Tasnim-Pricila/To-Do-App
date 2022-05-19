@@ -19,12 +19,13 @@ const Login = () => {
         signInWithEmailAndPassword(email, password);
         reset();     
     }
-    if(loginUser){
-        navigate('/');
-    }
     if(loginLoading){
         return <p> Loading...</p>
     }
+    if(loginUser){
+        navigate('/');
+    }
+    
     return (
         <div>
             <div className='flex items-center justify-center'>
