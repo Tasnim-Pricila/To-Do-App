@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
 import SocialLogin from '../Shared/SocialLogin';
+import Loading from './Loading/Loading';
 
 const Login = () => {
     // Email & Password Login 
@@ -20,7 +21,7 @@ const Login = () => {
         reset();     
     }
     if(loginLoading){
-        return <p> Loading...</p>
+        return <Loading/>
     }
     if(loginUser){
         navigate('/');

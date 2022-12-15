@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../components/Loading/Loading';
 import auth from '../firebase.init';
 
 const SocialLogin = () => {
@@ -14,7 +15,7 @@ const SocialLogin = () => {
         navigate('/');
     }
     if(googleLoading){
-        return <p> Loading...</p>
+        return <Loading/>
     }
    
     return (

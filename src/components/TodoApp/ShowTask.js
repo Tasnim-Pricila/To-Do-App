@@ -1,25 +1,30 @@
 import React from 'react';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
+import Loading from '../Loading/Loading';
 
 const ShowTask = () => {
    
+    const [loading, setLoading] = useState(false)
     const {data : tasks, isLoading, refetch} = useQuery( 'tasks',() => 
     fetch(`https://to-do-app-ak7m.onrender.com/tasks`)
             .then(res => res.json())
     )
 
-    if(isLoading){
-        return <p>Loading...</p>
+    if(isLoading || loading){
+        return <Loading/>
     }
 
     const handleDelete = (id) => {
+        setLoading(true)
         fetch(`https://to-do-app-ak7m.onrender.com/tasks/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
+                    setLoading(false)
                     toast.success('Item Deleted Successfully', {
                         theme: 'colored',
                         delay: 0,
@@ -29,8 +34,7 @@ const ShowTask = () => {
             })
     }
 
-    const handleComplete = (e) => {      
-        
+    const handleComplete = (e) => {     
         e.target.style.textDecoration = "line-through";
         toast.success('Task Completed Successfully', {
             theme: 'colored',
