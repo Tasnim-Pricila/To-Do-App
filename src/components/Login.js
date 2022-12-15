@@ -33,10 +33,10 @@ const Login = () => {
                     <div className='text-center'>
                         <p className='text-4xl uppercase text-orange-40 my-12 font-semibold'>Log In</p>
                     </div>
-                    <form onSubmit={handleSubmit(onSubmit)} className=' mx-auto '>
+                    <form onSubmit={handleSubmit(onSubmit)} className='mx-auto'>
                         <div>
                             <input placeholder='Email' type='email' name='email' {...register("email", { required: true })}
-                                className=' input input-bordered input-secondary w-full max-w-xs'/>
+                                className=' input input-bordered input-secondary w-full '/>
                         </div>
                         <small className='text-red-500 '>
                             {errors.email?.type === 'required' && "Email is required"}
@@ -44,7 +44,7 @@ const Login = () => {
 
                         <div>
                             <input placeholder='Password' type='password' {...register("password", { required: true })}
-                                className='input input-bordered input-secondary w-full max-w-xs my-4'/>
+                                className='input input-bordered input-secondary w-full my-4'/>
                         </div>
                         <small className=' text-red-500'>
                             {errors.password?.type === 'required' && "Password is required"}
@@ -55,7 +55,7 @@ const Login = () => {
                     </form>
 
                     <div className='text-center mt-6 tracking-wider font-semibold'>
-                        <p>Not Account Yet? <Link to='/register' className='text-primary hover:underline'> Sign Up</Link></p>
+                        <p>No Account Yet? <Link to='/register' className='text-primary hover:underline'> Sign Up</Link></p>
                     </div>
                     <SocialLogin></SocialLogin>
                 </div>

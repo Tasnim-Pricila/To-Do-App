@@ -20,7 +20,7 @@ const SocialLogin = () => {
     return (
         <div>
             <div className="divider">OR</div>
-            <button className='border w-full py-2 tracking-wide flex justify-center items-center' onClick={() => signInWithGoogle()}>
+            <button className='border border-pink-700 w-full py-2 tracking-wide flex justify-center items-center' onClick={() => signInWithGoogle()}>
                 <FontAwesomeIcon icon={faGoogle} className='pr-4 text-orange-700'></FontAwesomeIcon>
                 <p className='font-semibold text-primary'>Sign In With Google</p>      
             </button>

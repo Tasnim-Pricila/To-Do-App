@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 const ShowTask = () => {
    
     const {data : tasks, isLoading, refetch} = useQuery( 'tasks',() => 
-    fetch(`https://infinite-cliffs-36577.herokuapp.com/tasks`)
+    fetch(`https://to-do-app-ak7m.onrender.com/tasks`)
             .then(res => res.json())
     )
 
@@ -14,7 +14,7 @@ const ShowTask = () => {
     }
 
     const handleDelete = (id) => {
-        fetch(`https://infinite-cliffs-36577.herokuapp.com/tasks/${id}`, {
+        fetch(`https://to-do-app-ak7m.onrender.com/tasks/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -47,14 +47,14 @@ const ShowTask = () => {
                             <th>Name</th>
                             <th>Description</th>
                             <th>Status</th>
-                            <th>Favorite Color</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             tasks.map((task, index) =>
                                 <tr key={task._id} >
-                                    <th>{index+1}</th>
+                                    <th>{index + 1}</th>
                                     <td id='name'>{task.name}</td>
                                     <td>{task.description}</td>
                                     <td><button className="btn btn-outline btn-accent" onClick={handleComplete}>Complete</button></td>

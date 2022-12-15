@@ -52,7 +52,7 @@ const Signup = () => {
                         {/* Name Field  */}
                         <div >
                             <input placeholder='Name' type='text' {...register("name", { required: true, })}
-                                className='input input-bordered input-secondary w-full max-w-xs my-4'/>
+                                className='input input-bordered input-secondary w-full  my-4'/>
 
                         </div>
                         <small className='text-red-500 '>
@@ -61,7 +61,7 @@ const Signup = () => {
                         {/* Email Field  */}
                         <div >
                             <input placeholder='Email'  {...register("email", { required: true, pattern: /\S+@\S+\.\S+/ })}
-                               className='input input-bordered input-secondary w-full max-w-xs my-4'/>
+                               className='input input-bordered input-secondary w-full  my-4'/>
 
                         </div>
 
@@ -74,7 +74,7 @@ const Signup = () => {
                         {/* PAssword field  */}
                         <div >
                             <input placeholder='Password' type='password' {...register("password", { required: true, pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/, minLength: 8 })}
-                                className='input input-bordered input-secondary w-full max-w-xs my-4' />
+                                className='input input-bordered input-secondary w-full  my-4' />
 
                         </div>
                         <small className=' text-red-500'>
@@ -87,7 +87,7 @@ const Signup = () => {
                         {/* Confirm PAssword field  */}
                         <div>
                             <input placeholder='Confirm Password' type='password' {...register("cpassword", { required: true, })}
-                                className='input input-bordered input-secondary w-full max-w-xs my-4'/>
+                                className='input input-bordered input-secondary w-full  my-4'/>
 
                         </div>
                         <small className=' text-red-500'>

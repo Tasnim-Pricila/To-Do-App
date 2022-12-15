@@ -32,6 +32,8 @@ const RequireAuth = ({ children }) => {
             </p>
             
             <button onClick={handleVErification} className='py-4 px-4 my-4 text-white bg-accent rounded-3xl text-2xl md:w-1/3'>Send Verification Mail Again...</button>
+            <p className='font-medium'>Please refresh this page after completing the verification
+            </p>
             
         </div>
     }
